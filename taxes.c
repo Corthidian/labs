@@ -1,39 +1,68 @@
-/**
- * This program computes income taxes based on adjusted
- * gross income and a child tax credit.
- *
- */
-#include <stdlib.h>
 #include <stdio.h>
-
-int main(int argc, char **argv) {
-
+#include <stdlib.h>
+int main (int argc ,char **argv) 
+{
   double agi = 0.0;
   char c = 'N';
   double tax = 0.0;
-  double childCredit = 0.0;
-  double totalTax = 0.0;
-  int numChildren = 0;
-
-  printf("Please enter your adjusted gross income (AGI): ");
-  scanf("%lf", &agi);
-  //remove the "enter" endline character
-  getchar(); 
-
-  printf("Do you have any children? (Y) or (N)? ");
+  double childcredit = 0.0;
+  double totaltax = 0.0;
+  int numchildren = 0;
+  printf("please enter the agi: ");
+  scanf("%lf ",&agi);
+  getchar();
+  printf("do you have nay children y or n");
   c = getchar();
-
-  if(c == 'y' || c == 'Y') {
-    printf("How many children do you have? ");
-    scanf("%d", &numChildren);
+  if (c=='y'||c=='Y')
+  {
+    printf("how many children do you have?");
+    scanf("%d",&numchildren);
   }
+  if (agi <= 1990) 
+  {
+    tax = agi * 0.10;
+  }
+  else if (agi<=81050)
+  {
+    tax = 1990 + (tax - 19900)*0.12;
+  }
+  else if (agi<=172750) 
+  {
+    tax = 9328 + (agi-81050)*0.22;
 
-  //TODO: compute the tax, child credit, and total tax here
+  }
+  else if (agi<=329850)
+  {
+    tax = 29502 + (agi - 172750 ) * 0.24;
 
-  printf("AGI:          $%10.2f\n", agi);
-  printf("Tax:          $%10.2f\n", tax);
-  printf("Child Credit: $%10.2f\n", childCredit);
-  printf("Total Tax:    $%10.2f\n", totalTax);
+  }
+  else if (agi<=418850)
+  {
+    tax = 67206 + (agi-329850)*0.32;
 
-  return 0;
+  }
+  else if (agi<=628300)
+
+  {
+    tax = 96585 + (agi - 418850) * 0.35;
+
+
+  }
+  else 
+  {
+    tax = 168933.50 + (agi - 628300)*0.37;
+
+  }
+  childcredit = numchildren * 2000.0;
+  if (childcredit > tax )
+  {
+    childcredit = tax;
+  }
+printf("agi $%10.2f: \n",agi);
+printf("tax $%10.2f: \n",tax);
+printf("total tax $%10.2f: \n",totaltax);
+printf("child credit:  $%10.2f: \n",childcredit);
+return 0;
+
+
 }
