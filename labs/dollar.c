@@ -2,6 +2,12 @@
 int main () {
     float usd, fee, gpb, jpy;
     printf("Please enter the total ammount os us dollars: ");
+    scanf("%f",&usd);
+    fee = 0.1 * usd;
+    usd = usd - fee;
+    gpb = 0.395 * usd;
+    jpy = 62.825 * usd;
     
+
 
 }
